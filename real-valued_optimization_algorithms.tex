@@ -1,7 +1,6 @@
 \chapter{Real-valued Optimization Algorithms}
 \label{c:algos}
 
-% talk about ROI, what it is, why it is important
 Overview of real-valued optimization
 
 \section{Covariance Matrix Adaptation Evolution Strategy}
@@ -9,19 +8,97 @@ Overview of real-valued optimization
 
 \section{Standard Particle Swarm Optimization}
 
+Particle Swarm Optimization was first proposed by ...
+The swarm intelligence family... 
+However, there are multiple varients of PSO over the years.
+Standard PSO provides a well defined version of PSO that follows the basic principles.
+It is intend to be a milestone for future comparison, instead of the best algorithm on the market.
+
+So far, there have been three successive versions of standard PSO: SPSO 2006, 2007 and 2011
+The underlying principles of these three versions are generally the same as all PSO varients.
+The exact formula and implementation are slightly different due to latest theoretical progress.
+
+Initialization of the swarm.
+The swarm size, denoted as $S$, differs in SPSO 2006 and SPSO 2011.
+In both SPSO 2006 and SPSO 2007, the initial number of particles is defined as:
+\begin{displaymath}
+S = 10 + \lfloor 2\sqrt{D} \rfloor,
+\end{displaymath}
+where $D$ is the dimension.
+
+However, in SPSO 2011, the swarm size can be defined by user, yet suggested as 40~\cite{Clerc:2012:SPSO2011} since the original swarm size is far from optimal.
+
+Each particle in the swarm possesses the following elements: current position, current velocity, personal pervious best position, and previous best position in the neighbourhood. 
+
+The information links...
+The adaptive random topology described in ~\cite{Clerc:2007:randomTopology} is formally equivalent to "Stocastic Star".
+
+Update Velocity as shown in Figure~\ref{fig:SPSO_update}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{SPSO_update}
+\caption{(a) SPSO 2011. (b) SPSO 2006.}\label{fig:SPSO_update}
+\end{figure}
+
+The pseudo code defined in ~\cite{Zambrano:2013:SPSO2011}
+
 
 \section{Ant Colony Optimization for Continuous Domain}
 
-Attention plays an important role in human vision. For example, when
-we look at an image, our eye movements comprise a succession of {\em
-fixations} (repetitive positioning of eyes to parts of the image)
-and {\em saccades} (rapid eye jump). Those parts of the image that
-cause eye fixations and capture primary attention are called {\em
-regions of interest} (ROIs). Studies in visual attention and eye
-movement have shown that humans generally only attend to a few ROIs.
-Detecting these visually attentive regions in images is challenging
-but useful in many multimedia applications, such as automatic
-thumbnail cropping, object recognition, content-based image
-retrieval, adaptive image compression and automatic browsing in
-small-screen devices.
+Ant Colony optimization (ACO) is first proposed by Dorigo~\cite{Dorigo:1999:ACO} to solve combinatorial optimization problems, including scheduling, routing, and timetabling.
+These problems aim to find optimal \textit{combinations} or \textit{permutations} of finit sets of available components.
+Inspired by the foraging behavior of natural ants, ACO mimics the pheromone deposition of ants along the trail to a food source.
+The deposited pheromone, which indicates the quantity and quality of the food, creates an indirect communication among ants and enables them to find the shortest paths.
+The pseudo code of ACO is given in Algorithm~\ref{algo:ACO}.
+Two major procedures: \textit{solution construction} and \textit{phermone update}, are detailed in the following paragraph.
+
+
+Consider a search space $\boldsymbol{S}$ defined over a finit set of all possible \textit{solution components}, denoted by $\boldsymbol{C}$.
+Each solution component, denoted by $c_{ij}$, is a decision variable $X_i$ instantiated with value $v^{j}_{i} \in \boldsymbol{D}_i = \{ v^{1}_{i}, ..., v^{|\boldsymbol{D}_i|}_{i}\}$.
+To construct a new solution, an artificial ants starts with an empty partial solution $s^{p} = \emptyset$.
+During each construction step, the partial solution $s^{p}$ is extended with a feasible solution from the set $N(s^{p}) \in \boldsymbol{C} \setminus s^{p}$.
+The probabilistic pheromone model adopted for selecting a feasible solution from $N(s^{p})$ can be defined as follows:
+
+\begin{equation}
+p(c_{ij}|s^p) = \frac{\tau^{\alpha}_{ij} \cdot \eta(c_{ij})^{\beta}} 
+                     {\sum_{c_{i\ell}\in N(s^{p})} \tau^{\alpha}_{i\ell} \cdot \eta(c_{i\ell})^{\beta} },  \forall c_{ij} \in N(s^{p}),
+\end{equation}
+where $\tau_{ij}$ is the pheromone value associated with component $c_{ij}$, and $\eta(\cdot)$ is a weighting function. 
+% that assigns at each construction step a heuristic value to each feasible solution component $c_{ij} \in N(s^{p})$.
+$\alpha$ and $\beta$ are positive parameters which determine the relation between phermone and heuristic information.
+
+The pheromone update
+
+
+Over the years, multiple approaches of extending the ACO on continous domain have been given.
+One of the most successful version is ACO$_{R}$, proposed by Socha and Dorigo in 2008~\cite{Socha:2008:ACOR}.
+It extends ACO to the continuous domain without making any major conceptual change to its structure.
+The fundamental idea underlying ACO$_{R}$ is the shift from using a discrete probability distribution to using a continuous one, demonstrated in Figure~\ref{fig:ACOR_distribution}. 
+
+A enhanced Gaussian kernel PDF as shown in Figure~\ref{fig:ACOR_gaussianKernel}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ACOR_distribution}
+\caption{(a) Discrete probability distribution $p(c_{ij}|s^{p})$. (b) Continuous probability density function $p(x|s^{p})$}\label{fig:ACOR_distribution}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ACOR_gaussianKernel}
+\caption{(a) Discrete probability distribution $p(c_{ij}|s^{p})$. (b) Continuous probability density function $p(x|s^{p})$}\label{fig:ACOR_gaussianKernel}
+\end{figure}
+
+\begin{algorithm}%[t!]
+\caption{Ant Colony Optimization metaheuristic}\label{algo:ACO}
+\While{ termination criterion not met } {
+
+    schedule activities \\
+    solution contruction by ants(); \\
+    phermone update(); \\
+    daemon actions(); \\
+}
+\end{algorithm}
+
+
 
