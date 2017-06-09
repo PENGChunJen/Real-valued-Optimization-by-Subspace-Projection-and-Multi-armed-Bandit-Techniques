@@ -1,29 +1,40 @@
 \chapter{Multi-armed Bandit Algorithms}
-\label{c:bandit}
+\label{chapter:MAB}
 
-% talk about ROI, what it is, why it is important
+After identifying the unimodals in Chapter~\ref{chapter:clustering} and defining a ROI for exploitation in Chapter~\ref{chapter:projection},
+we still need to decide how to allocate our resources.
 Describe the exploration vs. exploitation dilemma.
+One should take different strategies according to evaluations left.
+Instead of letting the algorithms handling both eploration and exploitation, we propose a bandit technique to help manage exploitation.
+
+
+Multi-armed Bandit Algorithms are suitable for this scenario.
+It learns model from outcomes and the actions do not change the state of the world.
+
+Unlike canonical MAB algorithms that minimize regrets, we wish to maximize the probability of gaining the maximum rank.
+
+
+
+
 
 \section{The Multi-armed Bandit Problem}
 
+Multi-aremed Bandit (MAB) Problem describes an agent needs to decide in $K$ arms to pull at time $t$ and receives a reward.
 
-\section{The Upper Confidence Bound Algorithm}
+Describe \textit{policy} and \textit{regret}.
+
+The goal is to minimize regret.
 
 
-\section{The Price of Knowledge and Estimated Reward strategy}
+
+\section{Some common MAB Algorithm}
+
+\subsection{UCB}
+
+\subsection{POKER}
 The Price of Knowledge and Estimated Reward (POKER) strategy considers three ideas: pricing uncertainty, exploiting the lever distribution and taking into account the horizon
 
 
-Attention plays an important role in human vision. For example, when
-we look at an image, our eye movements comprise a succession of {\em
-fixations} (repetitive positioning of eyes to parts of the image)
-and {\em saccades} (rapid eye jump). Those parts of the image that
-cause eye fixations and capture primary attention are called {\em
-regions of interest} (ROIs). Studies in visual attention and eye
-movement have shown that humans generally only attend to a few ROIs.
-Detecting these visually attentive regions in images is challenging
-but useful in many multimedia applications, such as automatic
-thumbnail cropping, object recognition, content-based image
-retrieval, adaptive image compression and automatic browsing in
-small-screen devices.
+\section{The New Bandit Technique}
+
 

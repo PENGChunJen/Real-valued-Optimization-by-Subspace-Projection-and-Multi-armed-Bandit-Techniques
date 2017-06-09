@@ -7,27 +7,33 @@ Overview of real-valued optimization
 \section{Test Problems}
 
 \subsection{CEC2005 25 benchmark problems}
+Describe termination criterion and evaluation method for CEC2005
+Describe reason for 25 repeat runs.
+Describe how initial setting effect real-valued optimization, so that all algorithms should start with identicle initial status.
+
 
 \section{Experiment Settings}
 
+Describe the parameters setting for CMA-ES, SPSO and ACOR
 CMA-ES initial mean and std, population settings
 SPSO2011 parameters (c, w) settings, and population settings
-
-\section{Results}
-\section{Discussion}
-
+For ACOR, we set our parameters according to the original paper~\ref{Socha:2008:ACOR}. 
+The parameters are shown in Table~\ref{table:ACOR_parameters}.
 
 
-Attention plays an important role in human vision. For example, when
-we look at an image, our eye movements comprise a succession of {\em
-fixations} (repetitive positioning of eyes to parts of the image)
-and {\em saccades} (rapid eye jump). Those parts of the image that
-cause eye fixations and capture primary attention are called {\em
-regions of interest} (ROIs). Studies in visual attention and eye
-movement have shown that humans generally only attend to a few ROIs.
-Detecting these visually attentive regions in images is challenging
-but useful in many multimedia applications, such as automatic
-thumbnail cropping, object recognition, content-based image
-retrieval, adaptive image compression and automatic browsing in
-small-screen devices.
+\begin{table}%[t!]
+\centering
+\label{table:ACOR_parameters}
+\begin{tabular}{lll}
+\hline
+Parameter                        & Symbol   & Value          \\ \hline
+No. of ants used in an iteration & $m$      & $2$            \\
+Speed of convergence             & $\xi$    & $0.85$         \\
+Locality of the search process   & $q$      & $10^{-4}$      \\
+Archive size                     & $k$      & $50$           \\ \hline
+\end{tabular}
+\caption{Summary of the parameters used by $ACO_R$}
+\end{table}
 
+
+Describe our bandit parameters setting, including the initial population, maximum number of arms, and (1+1)-ES step size.
